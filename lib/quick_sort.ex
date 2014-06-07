@@ -1,5 +1,5 @@
 defmodule Quicksort do
-  @doc """
+  @moduledoc """
   Implements quick sort in elixir using list comprehensions
   """
   def qsort([]), do: []
