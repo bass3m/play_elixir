@@ -88,15 +88,15 @@ defmodule BSTree do
   """
   def is_bst?(tree) when tree == nil, do: true
   def is_bst?(tree), do: is_bst?(tree,nil)
-  def is_bst?(tree, _acc) when tree == nil, do: nil
-  def is_bst?(%BSTree{left: left, item: item}, acc) when acc == nil do
+  defp is_bst?(tree, _acc) when tree == nil, do: nil
+  defp is_bst?(%BSTree{left: left, item: item}, acc) when acc == nil do
     is_bst?(left,item)
   end
-  def is_bst?(%BSTree{item: item}, acc) when item > acc do
+  defp is_bst?(%BSTree{item: item}, acc) when item > acc do
     IO.puts("Not a valid BST since #{item} > #{acc}")
     false
   end
-  def is_bst?(%BSTree{left: left, right: right}, acc) do
+  defp is_bst?(%BSTree{left: left, right: right}, acc) do
     is_bst?(left,acc)
     is_bst?(right,acc)
     true
