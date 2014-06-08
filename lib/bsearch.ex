@@ -19,7 +19,7 @@ defmodule Bsearch do
     end
   end
 
-  defp bsearch(data,target,low,high) do
+  defp bsearch(data,target,_low,_high) do
     IO.puts("Not Found target #{target} in: #{inspect data}")
   end
 
