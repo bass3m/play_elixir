@@ -81,4 +81,24 @@ defmodule BSTree do
     IO.puts("Least common ancestor for #{item1} and #{item2} Node #{item}")
   end
 
+  @doc """
+  Find out whether given tree is a BST,
+  Does an inorder traversal and checks whether items are in the
+  right order
+  """
+  def is_bst?(tree) when tree == nil, do: true
+  def is_bst?(tree), do: is_bst?(tree,nil)
+  def is_bst?(tree, _acc) when tree == nil, do: nil
+  def is_bst?(%BSTree{left: left, item: item}, acc) when acc == nil do
+    is_bst?(left,item)
+  end
+  def is_bst?(%BSTree{item: item}, acc) when item > acc do
+    IO.puts("Not a valid BST since #{item} > #{acc}")
+    false
+  end
+  def is_bst?(%BSTree{left: left, right: right}, acc) do
+    is_bst?(left,acc)
+    is_bst?(right,acc)
+    true
+  end
 end
