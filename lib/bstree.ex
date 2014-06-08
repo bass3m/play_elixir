@@ -2,11 +2,14 @@ defmodule BSTree do
   @moduledoc """
   Simple implementation of BST insertion and traversal.
   t = BSTree.new(1)
-  t1 = BSTree.add_entry(2,t)
-  t2 = BSTree.add_entry(5,t1)
-  t3 = BSTree.add_entry(3,t2)
-  t4 = BSTree.add_entry(0,t3)
+  t1 = BSTree.add_entry(t,2)
+  t2 = BSTree.add_entry(t1,5)
+  t3 = BSTree.add_entry(t2,3)
+  t4 = BSTree.add_entry(t3,0)
   BSTree.traverse(:inorder,t4)
+  Another tree:
+  List.foldl([3,10,1,6,14,4,7],BSTree.add_entry(8),
+             fn (x,acc) -> BSTree.add_entry(acc,x) end)
   """
   defstruct item: nil, left: nil, right: nil
 
@@ -14,23 +17,25 @@ defmodule BSTree do
     %BSTree{item: item}
   end
 
-  def add_entry(new_item,
-                %BSTree{item: item,
-                        right: right} = tree) when new_item > item do
-    %BSTree{tree | right: add_entry(new_item,right)}
+  def add_entry(%BSTree{item: item,
+                        right: right} = tree,new_item) when new_item > item do
+    %BSTree{tree | right: add_entry(right,new_item)}
   end
 
-  def add_entry(new_item,
-                %BSTree{item: item,
-                        left: left} = tree) when new_item < item do
-    %BSTree{tree | left: add_entry(new_item,left)}
+  def add_entry(%BSTree{item: item,
+                        left: left} = tree,new_item) when new_item < item do
+    %BSTree{tree | left: add_entry(left,new_item)}
   end
 
-  def add_entry(new_item, %BSTree{} = tree) do
+  def add_entry(%BSTree{} = tree,new_item) do
     %BSTree{tree | item: new_item}
   end
 
-  def add_entry(new_item,tree) when tree == nil do
+  def add_entry(tree,new_item) when tree == nil do
+    new(new_item)
+  end
+
+  def add_entry(new_item) do
     new(new_item)
   end
 
@@ -39,9 +44,9 @@ defmodule BSTree do
 
   def traverse(:inorder, %BSTree{item: item,
                                  left: left,
-                                 right: right} = tree) do
+                                 right: right} = _tree) do
     traverse(:inorder,left)
-    IO.puts("Item : #{item}")
+    IO.puts("Item : #{inspect item}")
     traverse(:inorder,right)
   end
 
