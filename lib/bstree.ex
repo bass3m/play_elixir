@@ -40,7 +40,7 @@ defmodule BSTree do
     new(new_item)
   end
 
-  def traverse(:inorder,tree) when tree == nil do
+  def traverse(_,tree) when tree == nil do
   end
 
   def traverse(:inorder, %BSTree{item: item,
@@ -49,6 +49,14 @@ defmodule BSTree do
     traverse(:inorder,left)
     IO.puts("Item : #{inspect item}")
     traverse(:inorder,right)
+  end
+
+  def traverse(:preorder, %BSTree{item: item,
+                                  left: left,
+                                  right: right} = _tree) do
+    IO.puts("Item : #{inspect item}")
+    traverse(:preorder,left)
+    traverse(:preorder,right)
   end
 
   def min_depth(tree) when tree == nil, do: 0
