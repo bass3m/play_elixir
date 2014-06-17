@@ -77,11 +77,11 @@ defmodule BSTree do
   BSTree.lca(t3,14,8) => 8
   BSTree.lca(t3,10,22) => 20
   """
-  def lca(%BSTree{left: left, right: _right, item: item} = _tree,
+  def lca(%BSTree{left: left, right: _right, item: item},
           item1,item2) when item1 < item and item2 < item do
     lca(left,item1,item2)
   end
-  def lca(%BSTree{left: _left, right: right, item: item} = _tree,
+  def lca(%BSTree{left: _left, right: right, item: item},
           item1,item2) when item1 > item and item2 > item do
     lca(right,item1,item2)
   end
