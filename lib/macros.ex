@@ -17,4 +17,11 @@ defmodule Macros do
   def do_my_assert(:==,lhs,rhs) do
     IO.puts("!== #{lhs} and #{rhs}")
   end
+
+  def do_my_assert(:>,lhs,rhs) when lhs > rhs do
+    IO.puts(">")
+  end
+  def do_my_assert(:>,lhs,rhs) do
+    IO.puts("! > #{lhs} and #{rhs}")
+  end
 end
