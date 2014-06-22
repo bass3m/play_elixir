@@ -12,6 +12,7 @@ defmodule Pascal do
   1 2 1     2
   1 3 3 1   3
   1 4 6 4 1 4
+  ex: look at 4th row
   iex(11)> 0..4
           |> Enum.into([])
           |> Enum.map(&(Pascal.pascal(&1,4)))
