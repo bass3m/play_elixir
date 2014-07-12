@@ -2,7 +2,7 @@ defmodule FizzBuzz do
   @moduledoc """
   Silly elixir fizzbuzz implementation:
   Use as follows:
-  > range = 1..100
+  iex  > range = 1..100
   iex  > range
   ... |> Stream.map(fn(n)->FizzBuzz.fizzbuzz(n) end)
   ... |> Enum.take(18)
